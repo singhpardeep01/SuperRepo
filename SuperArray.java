@@ -18,7 +18,7 @@
  *  remove item (while maintaining "left-justification")
  *****************************/
 
-public class SuperArray implements ListInt{
+public class SuperArray{
 
     //~~~~~INSTANCE VARS~~~~~
     //underlying container, or "core" of this data structure:
@@ -114,7 +114,7 @@ public class SuperArray implements ListInt{
     
     //main method for testing
     public static void main(String[] args) {
-	/*
+	
 	SuperArray curtis = new SuperArray();
 	System.out.println("Printing empty SuperArray curtis...");
 	System.out.println(curtis);
@@ -166,52 +166,6 @@ public class SuperArray implements ListInt{
 	mayfield.add(1,77);
 	System.out.println("Printing SuperArray mayfield post-insert...");
 	System.out.println(mayfield);
-	*/
-	ListInt pardeep = new SuperArray();
-	System.out.println("Printing empty ListInt pardeep...");
-	System.out.println(pardeep);
-
-	pardeep.add(5);
-	pardeep.add(4);
-	pardeep.add(3);
-	pardeep.add(2);
-	pardeep.add(1);
-
-	System.out.println("Printing populated ListInt pardeep...");
-	System.out.println(pardeep);
-
-	System.out.println("Printing ListInt pardeep index:0");
-	System.out.println(pardeep.get(0));
-	System.out.println("Printing ListInt pardeep index:1");
-	System.out.println(pardeep.get(1));
-	System.out.println("Printing ListInt pardeep index:2");
-	System.out.println(pardeep.get(2));
-	System.out.println("Printing ListInt pardeep index:3");
-	System.out.println(pardeep.get(3));
-	System.out.println("Printing ListInt pardeep index:4");
-	System.out.println(pardeep.get(4));
-
-	System.out.println("Printing ListInt pardeep length");
-	System.out.println(pardeep.size());
-	
-	pardeep.remove(3);
-	System.out.println("Printing ListInt pardeep post-remove...");
-	System.out.println(pardeep);
-	pardeep.remove(3);
-	System.out.println("Printing ListInt pardeep post-remove...");
-	System.out.println(pardeep);
-	     
-	pardeep.add(3,99);
-	System.out.println("Printing ListInt pardeep post-insert...");
-	System.out.println(pardeep);
-	pardeep.add(2,88);
-	System.out.println("Printing ListInt pardeep post-insert...");
-	System.out.println(pardeep);
-	pardeep.add(1,77);
-	System.out.println("Printing ListInt pardeep post-insert...");
-	System.out.println(pardeep);
-
-	
 
     } //end main
 

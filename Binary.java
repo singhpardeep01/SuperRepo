@@ -1,11 +1,3 @@
-//Pardeep Singh
-//APCS1 pd9
-//HW43 -- This or That
-//2015-12-07
-
-
-//skeleton file for class Binary
-
 public class Binary implements Comparable{
 
     private int _decNum;
@@ -31,6 +23,7 @@ public class Binary implements Comparable{
       =====================================*/
     public Binary( int n ) {
 	_decNum = n;
+	//changes the inputted int to a binary number
 	_binNum = decToBin(n);
     }
 
@@ -41,6 +34,7 @@ public class Binary implements Comparable{
       post: sets _binNum to input, _decNum to decimal equiv
       =====================================*/
     public Binary( String s ) {
+	//changes inputted string of binary to decimal number
 	_decNum = binToDec(s);
 	_binNum = s;
     }
@@ -51,7 +45,8 @@ public class Binary implements Comparable{
       pre:  n/a
       post: returns String of 1's and 0's representing value of this Object
       =====================================*/
-    public String toString() { 
+    public String toString() {
+	//returns the string of the binary number
 	return _binNum;  
     }
 
@@ -67,12 +62,13 @@ public class Binary implements Comparable{
       decToBin(14) -> "1110"
       =====================================*/
     public static String decToBin( int n ) {
-        String retStr = "";
-	while (n > 0) {
-	    retStr = n % 2 + retStr;
-	    n /= 2;
+        String retStr = "";//creates the string that will hold the binary number
+	while (n > 0) {//as long as the number is positive
+	    retStr = n % 2 + retStr;//add the remainder to the beginning of the binary number
+	    n /= 2;//set the number to the quotient of n and 2
+	    //since % by 2 only numbers being added are 0 and 1
 	}
-	return retStr; 
+	return retStr; //returns the binary number
     }
 
 
@@ -87,10 +83,11 @@ public class Binary implements Comparable{
       decToBinR(14) -> "1110"
       =====================================*/
     public static String decToBinR( int n ) {
+	//as long as the number isn't 0 or less
 	if ( n != 0) {
-	    return decToBinR(n / 2) + (n % 2);
+	    return decToBinR(n / 2) + (n % 2);//adds the remainder of n and 2 to the recurssed of the quotient of n and 2
 	}
-	return "";
+	return "";//if n is 0 or less return empty string
     }
 
 
@@ -106,14 +103,15 @@ public class Binary implements Comparable{
       binToDec("1110") -> 14
       =====================================*/
     public static int binToDec( String s ) {
-	int size = s.length() - 1;
-	int retInt = 0;
-	while (size > -1) {
+	int size = s.length() - 1;//the length of the  binary number 
+	int retInt = 0;//integer being returned
+	while (size > -1) {//as long as the binary number doesn't reach 0
+	    //add the 0th index of the binary multiplied by 2 to the power of the length of the binary
 	    retInt += Integer.parseInt( s.substring(0,1) ) * (int) Math.pow(2,size);
-	    s = s.substring(1);
-	    size--;
+	    s = s.substring(1);//shortens the binary
+	    size--;//decreases size of binary 
 	}
-	return retInt;
+	return retInt;//return the decimal number
     }
 
 
@@ -129,10 +127,12 @@ public class Binary implements Comparable{
       binToDecR("1110") -> 14
       =====================================*/
     public static int binToDecR( String s ) {
-	if ( s.length() == 0 ) {
-	    return 0;
+	if ( s.length() == 0 ) {//if the binary has no length
+	    return 0;//return 0 because thats the decimal equivalent
 	}
 	else {
+	    //add (the 0th index of the binary multiplied by 2 to the power of the length of the binary)
+	    //to (the recurssed method with a shorter binary as the input
 	    return Integer.parseInt( s.substring(0,1) ) * (int) Math.pow(2,s.length() - 1) + binToDecR(s.substring(1));
 	}
     }
@@ -145,10 +145,10 @@ public class Binary implements Comparable{
       Object), or if this and other represent equal binary values
       =============================================*/
     public boolean equals( Object other ) { 
-	if (other instanceof Binary) {
-	    return _decNum == ((Binary) other)._decNum;
+	if (other instanceof Binary) {//check if input is a Binary
+	    return _decNum == ((Binary) other)._decNum;//returns true when the decimal equivalents are equal
 	}
-	return false;
+	return false;//return false if input is not Binary
     }
 
 
@@ -159,14 +159,16 @@ public class Binary implements Comparable{
       negative integer if this<input, positive integer otherwise
       =============================================*/
     public int compareTo( Object o ) {
+	//throws NullPointerException if the input has not been assigned a value or has a value of null
 	if (o.equals(null)) {
 	    throw new NullPointerException(
 					   "\nObject is null!"
 					   +" compareTo() input not assigned a value");
 	}
-	else if (o instanceof Binary) {
-	    return _decNum -  ((Binary) o)._decNum;
+	else if (o instanceof Binary) {//if the input is binary
+	    return _decNum -  ((Binary) o)._decNum;//returns the difference of the called numbers decimal eqiv. and the inputs decimal equiv.
 	}
+	//throws ClassCastException if the input is not Binary
 	else {
 	    throw new ClassCastException(
 					 "\nClasses do not match! " 

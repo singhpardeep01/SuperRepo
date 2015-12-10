@@ -1,5 +1,5 @@
 
-public class Hexadecimal {
+public class Hexadecimal implements Comparable{
 
     private int _decNum;
     private String _hexNum;
@@ -153,9 +153,14 @@ public class Hexadecimal {
       post: Returns 0 if this Object is equal to the input Object,
       negative integer if this<input, positive integer otherwise
       =============================================*/
-    public int compareTo( Object other ) {
-	if (other instanceof Hexadecimal) {
-	    return _decNum -  ((Hexadecimal) other)._decNum;
+    public int compareTo( Object o ) {
+	if (o.equals(null)) {
+	    throw new NullPointerException(
+					   "\nObject is null!"
+					   +" compareTo() input is a null value");
+	}
+	else if (o instanceof Hexadecimal) {
+	    return _decNum -  ((Hexadecimal) o)._decNum;
 	}
 	else {
 	    throw new ClassCastException(
@@ -175,6 +180,7 @@ public class Hexadecimal {
 	Hexadecimal b2 = new Hexadecimal(192345);
 	Hexadecimal b3 = b1;
 	Hexadecimal b4 = new Hexadecimal(4321421);
+	Hexadecimal b5 = null;
 	
 	System.out.println( b1 );
 	System.out.println( b2 );
@@ -203,6 +209,8 @@ public class Hexadecimal {
 	System.out.println( b1.compareTo(b3) ); //should be 0
 	System.out.println( b1.compareTo(b4) ); //should be neg
 	System.out.println( b4.compareTo(b1) ); //should be pos
+	//	System.out.println( b4.compareTo("2") ); //should throw class error
+	System.out.println( b4.compareTo(b5) ); //should throw null pointer error
 	/*=========================================
 	  =========================================*/
     }//end main()

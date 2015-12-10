@@ -105,12 +105,21 @@ public class Rational implements Comparable{
     // Returns 1 if calling number is greater than parameter
     // Returns -1 if calling number is less than parameter
     public int compareTo(Object o) {
-	if (this instanceof Rational && o instanceof Rational) {
+	if (o.equals(null)) {
+	    throw new NullPointerException(
+					   "\nObject is null!"
+					   + " compareTo() input is null");
+	}
+	else if (this instanceof Rational && o instanceof Rational) {
 	    int thisValue = ((Rational) this).numerator * ((Rational) o).denominator;
 	    int rValue = ((Rational) o).numerator * ((Rational) this).denominator;
 	    return thisValue - rValue;
 	}
-        return 10000000;
+	else {
+	    throw new ClassCastException(
+					 "\nClasses do not match!"
+					 +" compareTo() input is not Rational");
+        }
     }
        
 
@@ -125,12 +134,16 @@ public class Rational implements Comparable{
         Rational s = new Rational(1, 2); // Stores the rational number 1/2
         Rational t = new Rational(2, 4); // Stores the rational number 2/4
         Rational u = new Rational(5, 3); // Stores the rational number 5/3
-        Rational v = new Rational(6, 1); // Stores the rational number 6/1
+	Rational v = new Rational(6, 1); // Stores the rational number 6/1
+	Rational w = null; // Stores null
+
         System.out.println(r.equals(s));//false
         System.out.println(t.equals(s));//true
         System.out.println(s.compareTo(t));//0
         System.out.println(v.compareTo(u));//positive
         System.out.println(r.compareTo(u));//negative
+	//        System.out.println(r.compareTo(2));//ClassCastExeception
+        System.out.println(r.compareTo(w));//NullPointerException
         r.add(s);
         System.out.println(r);
         r.subtract(s);

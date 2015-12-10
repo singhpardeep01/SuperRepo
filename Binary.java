@@ -6,7 +6,7 @@
 
 //skeleton file for class Binary
 
-public class Binary {
+public class Binary implements Comparable{
 
     private int _decNum;
     private String _binNum;
@@ -158,9 +158,14 @@ public class Binary {
       post: Returns 0 if this Object is equal to the input Object,
       negative integer if this<input, positive integer otherwise
       =============================================*/
-    public int compareTo( Object other ) {
-	if (other instanceof Binary) {
-	    return _decNum -  ((Binary) other)._decNum;
+    public int compareTo( Object o ) {
+	if (o.equals(null)) {
+	    throw new NullPointerException(
+					   "\nObject is null!"
+					   +" compareTo() input not assigned a value");
+	}
+	else if (o instanceof Binary) {
+	    return _decNum -  ((Binary) o)._decNum;
 	}
 	else {
 	    throw new ClassCastException(
@@ -180,6 +185,7 @@ public class Binary {
 	Binary b2 = new Binary(5);
 	Binary b3 = b1;
 	Binary b4 = new Binary(7);
+	Binary b5 = null;
 	
 	System.out.println( b1 );
 	System.out.println( b2 );
@@ -201,7 +207,9 @@ public class Binary {
 	System.out.println( b1.compareTo(b2) ); //should be 0
 	System.out.println( b1.compareTo(b3) ); //should be 0
 	System.out.println( b1.compareTo(b4) ); //should be neg
-	System.out.println( b4.compareTo(b1) ); //should be pos
+	System.out.println( b4.compareTo(b1) ); //should be neg
+	//       	System.out.println( b4.compareTo("2") ); //should throw class error
+	System.out.println( b4.compareTo(b5) ); //should throw NullPointerException error
 	/*=========================================
 	  =========================================*/
     }//end main()
